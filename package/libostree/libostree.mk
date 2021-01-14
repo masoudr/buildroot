@@ -4,9 +4,10 @@
 #
 ################################################################################
 
-LIBOSTREE_VERSION = 2020.8
+LIBOSTREE_VERSION_MAJOR = 2019.6
+LIBOSTREE_VERSION= $(LIBOSTREE_VERSION_MAJOR)
 LIBOSTREE_SOURCE = libostree-$(LIBOSTREE_VERSION).tar.xz
-LIBOSTREE_SITE = https://github.com/ostreedev/ostree/releases/download/v$(LIBOSTREE_VERSION)
+LIBOSTREE_SITE = https://github.com/ostreedev/ostree/releases/download/v$(LIBOSTREE_VERSION_MAJOR)
 
 LIBOSTREE_LICENSE = LGPL-2.0+
 LIBOSTREE_LICENSE_FILES = COPYING
@@ -21,14 +22,6 @@ LIBOSTREE_CONF_OPTS += \
 	--disable-gtk-doc-html \
 	--disable-gtk-doc-pdf \
 	--disable-man
-
-ifeq ($(BR2_PACKAGE_GOBJECT_INTROSPECTION),y)
-LIBOSTREE_DEPENDENCIES += gobject-introspection
-LIBOSTREE_CONF_OPTS += --enable-introspection
-LIBOSTREE_MAKE_OPTS = INTROSPECTION_SCANNER_ENV=
-else
-LIBOSTREE_CONF_OPTS += --disable-introspection
-endif
 
 ifeq ($(BR2_PACKAGE_OPENSSL),y)
 LIBOSTREE_CONF_OPTS += --with-openssl

@@ -11,6 +11,5 @@ LIBUPNP_CONF_ENV = ac_cv_lib_compat_ftime=no
 LIBUPNP_INSTALL_STAGING = YES
 LIBUPNP_LICENSE = BSD-3-Clause
 LIBUPNP_LICENSE_FILES = LICENSE
-LIBUPNP_CPE_ID_VALID = YES
 
 $(eval $(autotools-package))

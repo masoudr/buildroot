@@ -1,5 +1,4 @@
 comment "libgtk3 needs a toolchain w/ wchar, threads, C++, gcc >= 4.8"
-	depends on BR2_PACKAGE_HOST_RUSTC_ARCH_SUPPORTS
 	depends on BR2_USE_MMU
 	depends on BR2_TOOLCHAIN_HAS_SYNC_4
 	depends on !BR2_USE_WCHAR || !BR2_INSTALL_LIBSTDCPP || \
@@ -14,7 +13,6 @@ comment "libgtk3 needs an OpenGL or an OpenGL-EGL/wayland backend"
 
 config BR2_PACKAGE_LIBGTK3
 	bool "libgtk3"
-	depends on BR2_PACKAGE_HOST_RUSTC_ARCH_SUPPORTS # host-libgtk3 -> host-librsvg
 	depends on BR2_USE_WCHAR # glib2
 	depends on BR2_TOOLCHAIN_HAS_THREADS # glib2
 	depends on BR2_USE_MMU # glib2
@@ -38,7 +36,7 @@ config BR2_PACKAGE_LIBGTK3
 	help
 	  The GTK+ version 3 graphical user interface library
 
-	  https://www.gtk.org/
+	  http://www.gtk.org/
 
 if BR2_PACKAGE_LIBGTK3
 

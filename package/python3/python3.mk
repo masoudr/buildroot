@@ -4,8 +4,8 @@
 #
 ################################################################################
 
-PYTHON3_VERSION_MAJOR = 3.9
-PYTHON3_VERSION = $(PYTHON3_VERSION_MAJOR).1
+PYTHON3_VERSION_MAJOR = 3.8
+PYTHON3_VERSION = $(PYTHON3_VERSION_MAJOR).6
 PYTHON3_SOURCE = Python-$(PYTHON3_VERSION).tar.xz
 PYTHON3_SITE = https://python.org/ftp/python/$(PYTHON3_VERSION)
 PYTHON3_LICENSE = Python-2.0, others
@@ -48,12 +48,6 @@ HOST_PYTHON3_CONF_OPTS += --disable-openssl
 endif
 
 PYTHON3_INSTALL_STAGING = YES
-
-ifeq ($(BR2_PACKAGE_PYTHON3_2TO3),y)
-PYTHON3_CONF_OPTS += --enable-lib2to3
-else
-PYTHON3_CONF_OPTS += --disable-lib2to3
-endif
 
 ifeq ($(BR2_PACKAGE_PYTHON3_READLINE),y)
 PYTHON3_DEPENDENCIES += readline
@@ -162,6 +156,7 @@ PYTHON3_CONF_OPTS += \
 	--with-system-ffi \
 	--disable-pydoc \
 	--disable-test-modules \
+	--disable-lib2to3 \
 	--disable-tk \
 	--disable-nis \
 	--disable-idle3 \
@@ -285,7 +280,6 @@ define PYTHON3_CREATE_PYC_FILES
 	PYTHONPATH="$(PYTHON3_PATH)" \
 	$(HOST_DIR)/bin/python$(PYTHON3_VERSION_MAJOR) \
 		$(TOPDIR)/support/scripts/pycompile.py \
-		$(if $(VERBOSE),--verbose) \
 		--strip-root $(TARGET_DIR) \
 		$(TARGET_DIR)/usr/lib/python$(PYTHON3_VERSION_MAJOR)
 endef

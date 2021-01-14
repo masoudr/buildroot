@@ -12,8 +12,6 @@ LIBCURL_DEPENDENCIES = host-pkgconf \
 	$(if $(BR2_PACKAGE_RTMPDUMP),rtmpdump)
 LIBCURL_LICENSE = curl
 LIBCURL_LICENSE_FILES = COPYING
-LIBCURL_CPE_ID_VENDOR = haxx
-LIBCURL_CPE_ID_NAME = libcurl
 LIBCURL_INSTALL_STAGING = YES
 
 # We disable NTLM support because it uses fork(), which doesn't work
@@ -51,13 +49,6 @@ LIBCURL_CONF_OPTS += --with-ssl=$(STAGING_DIR)/usr \
 	--with-ca-path=/etc/ssl/certs
 else
 LIBCURL_CONF_OPTS += --without-ssl
-endif
-
-ifeq ($(BR2_PACKAGE_LIBCURL_BEARSSL),y)
-LIBCURL_CONF_OPTS += --with-bearssl=$(STAGING_DIR)/usr
-LIBCURL_DEPENDENCIES += bearssl
-else
-LIBCURL_CONF_OPTS += --without-bearssl
 endif
 
 ifeq ($(BR2_PACKAGE_LIBCURL_GNUTLS),y)

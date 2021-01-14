@@ -41,7 +41,7 @@ HOST_CAIRO_CONF_OPTS = \
 	--enable-interpreter=no \
 	--disable-directfb \
 	--enable-ft \
-	--enable-gobject \
+	--disable-gobject \
 	--disable-glesv2 \
 	--disable-vg \
 	--disable-xlib \
@@ -51,14 +51,13 @@ HOST_CAIRO_CONF_OPTS = \
 	--disable-ps \
 	--disable-pdf \
 	--enable-png \
-	--enable-script \
+	--disable-script \
 	--disable-svg \
 	--disable-tee \
 	--disable-xml
 HOST_CAIRO_DEPENDENCIES = \
 	host-freetype \
 	host-fontconfig \
-	host-libglib2 \
 	host-libpng \
 	host-pixman \
 	host-pkgconf

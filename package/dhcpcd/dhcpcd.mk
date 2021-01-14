@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-DHCPCD_VERSION = 9.1.4
+DHCPCD_VERSION = 8.0.3
 DHCPCD_SOURCE = dhcpcd-$(DHCPCD_VERSION).tar.xz
 DHCPCD_SITE = http://roy.marples.name/downloads/dhcpcd
 DHCPCD_DEPENDENCIES = host-pkgconf
@@ -13,8 +13,7 @@ DHCPCD_LICENSE_FILES = LICENSE
 
 DHCPCD_CONFIG_OPTS = \
 	--libexecdir=/lib/dhcpcd \
-	--os=linux \
-	--privsepuser=dhcpcd
+	--os=linux
 
 ifeq ($(BR2_PACKAGE_HAS_UDEV),y)
 DHCPCD_CONFIG_OPTS += --with-udev
@@ -28,7 +27,7 @@ DHCPCD_CONFIG_OPTS += --enable-static
 endif
 
 ifeq ($(BR2_USE_MMU),)
-DHCPCD_CONFIG_OPTS += --disable-fork --disable-privsep
+DHCPCD_CONFIG_OPTS += --disable-fork
 endif
 
 define DHCPCD_CONFIGURE_CMDS
@@ -57,10 +56,6 @@ define DHCPCD_INSTALL_INIT_SYSTEMD
 		$(TARGET_DIR)/usr/lib/systemd/system/dhcpcd.service
 endef
 endif
-
-define DHCPCD_USERS
-	dhcpcd -1 dhcpcd -1 * - - - dhcpcd user
-endef
 
 # NOTE: Even though this package has a configure script, it is not generated
 # using the autotools, so we have to use the generic package infrastructure.

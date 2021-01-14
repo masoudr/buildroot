@@ -6,7 +6,7 @@ config BR2_PACKAGE_HARFBUZZ
 	help
 	  HarfBuzz is an OpenType text shaping engine
 
-	  https://harfbuzz.github.io/
+	  http://www.freedesktop.org/wiki/Software/HarfBuzz/
 
 	  Harfbuzz can make optional use of cairo, freetype,
 	  glib2 and icu packages if they are selected.

@@ -4,14 +4,19 @@
 #
 ################################################################################
 
-MUTT_VERSION = 1.14.7
+MUTT_VERSION = 1.13.5
 MUTT_SITE = https://bitbucket.org/mutt/mutt/downloads
 MUTT_LICENSE = GPL-2.0+
 MUTT_LICENSE_FILES = GPL
 MUTT_DEPENDENCIES = ncurses
 MUTT_CONF_OPTS = --disable-doc --disable-smtp
+# We're patching configure.ac
+MUTT_AUTORECONF = YES
 
-# 0001-Ensure-IMAP-connection-is-closed-after-a-connection-error.patch
+# 0003-Prevent-possible-IMAP-MITM-via-PREAUTH-response.patch
+MUTT_IGNORE_CVES += CVE-2020-14093
+
+# 0004-Ensure-IMAP-connection-is-closed-after-a-connection-error.patch
 MUTT_IGNORE_CVES += CVE-2020-28896
 
 ifeq ($(BR2_PACKAGE_LIBICONV),y)
@@ -46,23 +51,12 @@ endif
 ifneq ($(BR2_PACKAGE_MUTT_IMAP)$(BR2_PACKAGE_MUTT_POP3),)
 ifeq ($(BR2_PACKAGE_OPENSSL),y)
 MUTT_DEPENDENCIES += openssl
-MUTT_CONF_OPTS += \
-	--without-gnutls \
-	--with-ssl=$(STAGING_DIR)/usr
-else ifeq ($(BR2_PACKAGE_GNUTLS),y)
-MUTT_DEPENDENCIES += gnutls
-MUTT_CONF_OPTS += \
-	--with-gnutls=$(STAGING_DIR)/usr \
-	--without-ssl
+MUTT_CONF_OPTS += --with-ssl=$(STAGING_DIR)/usr
 else
-MUTT_CONF_OPTS += \
-	--without-gnutls \
-	--without-ssl
+MUTT_CONF_OPTS += --without-ssl
 endif
 else
-MUTT_CONF_OPTS += \
-	--without-gnutls \
-	--without-ssl
+MUTT_CONF_OPTS += --without-ssl
 endif
 
 ifeq ($(BR2_PACKAGE_SQLITE),y)
@@ -70,13 +64,6 @@ MUTT_DEPENDENCIES += sqlite
 MUTT_CONF_OPTS += --with-sqlite3
 else
 MUTT_CONF_OPTS += --without-sqlite3
-endif
-
-ifeq ($(BR2_PACKAGE_ZLIB),y)
-MUTT_DEPENDENCIES += zlib
-MUTT_CONF_OPTS += --with-zlib=$(STAGING_DIR)/usr
-else
-MUTT_CONF_OPTS += --without-zlib
 endif
 
 # Avoid running tests to check for:

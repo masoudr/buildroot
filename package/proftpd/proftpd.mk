@@ -8,7 +8,6 @@ PROFTPD_VERSION = 1.3.6e
 PROFTPD_SITE = $(call github,proftpd,proftpd,v$(PROFTPD_VERSION))
 PROFTPD_LICENSE = GPL-2.0+
 PROFTPD_LICENSE_FILES = COPYING
-PROFTPD_CPE_ID_VENDOR = $(PROFTPD_NAME)
 
 PROFTPD_CONF_ENV = \
 	ac_cv_func_setpgrp_void=yes \
@@ -59,10 +58,6 @@ endif
 ifeq ($(BR2_PACKAGE_PROFTPD_MOD_SQL_SQLITE),y)
 PROFTPD_MODULES += mod_sql_sqlite
 PROFTPD_DEPENDENCIES += sqlite
-endif
-
-ifeq ($(BR2_PACKAGE_PROFTPD_MOD_SFTP_SQL),y)
-PROFTPD_MODULES += mod_sftp_sql
 endif
 
 ifeq ($(BR2_PACKAGE_PROFTPD_MOD_QUOTATAB),y)

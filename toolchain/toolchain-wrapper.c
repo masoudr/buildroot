@@ -129,8 +129,6 @@ static const struct str_len_s unsafe_paths[] = {
 	STR_LEN(/usr/lib),
 	STR_LEN(/usr/local/include),
 	STR_LEN(/usr/local/lib),
-	STR_LEN(/usr/X11R6/include),
-	STR_LEN(/usr/X11R6/lib),
 	{ NULL, 0 },
 };
 

@@ -24,6 +24,7 @@ SUPERTUXKART_DEPENDENCIES = \
 	libfribidi \
 	libgl \
 	libglew \
+	libglu \
 	libogg \
 	libpng \
 	libsquish \

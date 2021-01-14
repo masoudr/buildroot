@@ -11,6 +11,5 @@ MTR_CONF_OPTS = --without-gtk
 MTR_DEPENDENCIES = host-pkgconf $(if $(BR2_PACKAGE_NCURSES),ncurses)
 MTR_LICENSE = GPL-2.0
 MTR_LICENSE_FILES = COPYING
-MTR_SELINUX_MODULES = netutils
 
 $(eval $(autotools-package))

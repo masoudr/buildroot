@@ -4,13 +4,11 @@
 #
 ################################################################################
 
-MTD_VERSION = 2.1.2
+MTD_VERSION = 2.1.1
 MTD_SOURCE = mtd-utils-$(MTD_VERSION).tar.bz2
 MTD_SITE = ftp://ftp.infradead.org/pub/mtd-utils
 MTD_LICENSE = GPL-2.0
 MTD_LICENSE_FILES = COPYING
-MTD_CPE_ID_VENDOR = mtd-utils_project
-MTD_CPE_ID_NAME = mtd-utils
 MTD_INSTALL_STAGING = YES
 
 ifeq ($(BR2_PACKAGE_MTD_JFFS_UTILS),y)
@@ -23,8 +21,7 @@ endif
 ifeq ($(BR2_PACKAGE_MTD_UBIFS_UTILS),y)
 MTD_DEPENDENCIES += util-linux zlib lzo host-pkgconf
 MTD_CONF_OPTS += --with-ubifs
-# crypto needs linux/hash_info.h
-ifeq ($(BR2_TOOLCHAIN_HEADERS_AT_LEAST_4_12)$(BR2_PACKAGE_OPENSSL),yy)
+ifeq ($(BR2_PACKAGE_OPENSSL),y)
 MTD_DEPENDENCIES += openssl
 MTD_CONF_OPTS += --with-crypto
 else
@@ -55,11 +52,10 @@ else
 MTD_CONF_OPTS += --without-xattr
 endif
 
-HOST_MTD_DEPENDENCIES = host-acl host-zlib host-lzo host-util-linux host-zstd
+HOST_MTD_DEPENDENCIES = host-zlib host-lzo host-util-linux host-zstd
 HOST_MTD_CONF_OPTS = \
 	--with-jffs \
 	--with-ubifs \
-	--without-crypto \
 	--disable-tests
 
 MKFS_JFFS2 = $(HOST_DIR)/sbin/mkfs.jffs2

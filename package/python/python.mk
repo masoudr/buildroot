@@ -10,7 +10,6 @@ PYTHON_SOURCE = Python-$(PYTHON_VERSION).tar.xz
 PYTHON_SITE = https://python.org/ftp/python/$(PYTHON_VERSION)
 PYTHON_LICENSE = Python-2.0, others
 PYTHON_LICENSE_FILES = LICENSE
-PYTHON_CPE_ID_VENDOR = $(PYTHON_NAME)
 PYTHON_LIBTOOL_PATCH = NO
 
 # Python needs itself to be built, so in order to cross-compile
@@ -119,12 +118,6 @@ HOST_PYTHON_CONF_OPTS += --enable-unicode=ucs4
 PYTHON_CONF_OPTS += --enable-unicode=ucs4
 endif
 
-ifeq ($(BR2_PACKAGE_PYTHON_2TO3),y)
-PYTHON_CONF_OPTS += --enable-lib2to3
-else
-PYTHON_CONF_OPTS += --disable-lib2to3
-endif
-
 ifeq ($(BR2_PACKAGE_PYTHON_BZIP2),y)
 PYTHON_DEPENDENCIES += bzip2
 else
@@ -172,6 +165,7 @@ PYTHON_CONF_OPTS += \
 	--with-system-ffi \
 	--disable-pydoc \
 	--disable-test-modules \
+	--disable-lib2to3 \
 	--disable-gdbm \
 	--disable-tk \
 	--disable-nis \
@@ -264,7 +258,6 @@ define PYTHON_CREATE_PYC_FILES
 	PYTHONPATH="$(PYTHON_PATH)" \
 	$(HOST_DIR)/bin/python$(PYTHON_VERSION_MAJOR) \
 		$(TOPDIR)/support/scripts/pycompile.py \
-		$(if $(VERBOSE),--verbose) \
 		--strip-root $(TARGET_DIR) \
 		$(TARGET_DIR)/usr/lib/python$(PYTHON_VERSION_MAJOR)
 endef

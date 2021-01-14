@@ -8,7 +8,6 @@ TCPDUMP_VERSION = 4.9.3
 TCPDUMP_SITE = http://www.tcpdump.org/release
 TCPDUMP_LICENSE = BSD-3-Clause
 TCPDUMP_LICENSE_FILES = LICENSE
-TCPDUMP_CPE_ID_VENDOR = $(TCPDUMP_NAME)
 TCPDUMP_CONF_ENV = \
 	ac_cv_linux_vers=2 \
 	td_cv_buggygetaddrinfo=no \
@@ -18,7 +17,6 @@ TCPDUMP_CONF_OPTS = \
 	--with-system-libpcap \
 	$(if $(BR2_PACKAGE_TCPDUMP_SMB),--enable-smb,--disable-smb)
 TCPDUMP_DEPENDENCIES = libpcap
-TCPDUMP_SELINUX_MODULES = netutils
 
 # 0001-PPP-When-un-escaping-don-t-allocate-a-too-large-buffer.patch
 TCPDUMP_IGNORE_CVES += CVE-2020-8037

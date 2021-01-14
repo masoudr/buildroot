@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-XEN_VERSION = 4.14.1
+XEN_VERSION = 4.13.2
 XEN_SITE = https://downloads.xenproject.org/release/xen/$(XEN_VERSION)
 XEN_LICENSE = GPL-2.0
 XEN_LICENSE_FILES = COPYING
@@ -18,7 +18,6 @@ XEN_ARCH = arm32
 endif
 
 XEN_CONF_OPTS = \
-	--disable-golang \
 	--disable-ocamltools \
 	--with-initddir=/etc/init.d
 

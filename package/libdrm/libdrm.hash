@@ -1,6 +1,5 @@
-# From https://lists.freedesktop.org/archives/dri-devel/2020-November/285471.html
-sha256  3fe0affdba6460166a7323290c18cf68e9b59edcb520722826cb244e9cb50222  libdrm-2.4.103.tar.xz
-sha512  15b098b962008271400692b6b15ecb7e22676f8698e0220ad969735ac2315ccc737d19558afb6abda82bae15117e5f306c048184a2369f434b85ecaa670ca885  libdrm-2.4.103.tar.xz
-
-# Hash for license file
-sha256  2ece103921b7b5619198b9572fb9242db7bbfa6d3b33f9f93f22e1fb738ed8ac  xf86drm.c
+# From https://lists.freedesktop.org/archives/dri-devel/2019-October/240455.html
+md5 f47bc87e28198ba527e6b44ffdd62f65  libdrm-2.4.100.tar.bz2
+sha1 9f526909aba08b5658cfba3f7fde9385cad6f3b5  libdrm-2.4.100.tar.bz2
+sha256 c77cc828186c9ceec3e56ae202b43ee99eb932b4a87255038a80e8a1060d0a5d  libdrm-2.4.100.tar.bz2
+sha512 4d3a5556e650872944af52f49de395e0ce8ac9ac58530e39a34413e94dc56c231ee71b8b8de9fb944263515a922b3ebbf7ddfebeaaa91543c2604f9bcf561247  libdrm-2.4.100.tar.bz2
